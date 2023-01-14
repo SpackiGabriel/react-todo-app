@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import Item from './item/Item'
+
 import './List.css'
 
 
@@ -10,25 +12,48 @@ function List() {
     const [items, setItems] = useState([])
 
     useEffect(() => {
-        const loadData = () => {
-            fetch(API)
-            .then((data) => {
-                return data.json()
+
+        const getTodos = async () => {
+            
+            const data = await fetch(API, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
-            .then((data) => data)
+                .then((res) => res.json())
+                .then((data) => data)
+                .catch((error) => console.log(error))
+
+            setItems(data)
         }
 
-        const data = loadData()
-        console.log(data)
+        getTodos()
 
     }, [])
 
+    const deleteHandler = (id) => {
+
+        setItems((prevState) => prevState.filter(todo => todo.id != id))
+
+        fetch(API + "/" + id, {
+            method: 'DELETE'
+        })
+    }
+
     return (
-        <div className='list'>
-            {items.length === 0 && (
+        <ul className='list'>
+            {items.length === 0 ? (
                 <p>There no tasks yet!</p>
-            )}
-        </div>
+            ) : items.map((item) => (
+                <Item 
+                    name = {item.todo}
+                    duration = {item.time}
+                    id = {item.id}
+                    deleteHandler = {deleteHandler}
+                />
+            ))}
+        </ul>
     );
 }
 

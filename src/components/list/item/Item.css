@@ -1,0 +1,27 @@
+.item {
+    width: 100%;
+    height: auto;
+
+    border-bottom: 1px solid var(--first-color);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-title {
+    color: #fff;
+}
+
+.item-container {
+    color: #FFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5em;
+}
+
+.item-action {
+    cursor: pointer;
+}

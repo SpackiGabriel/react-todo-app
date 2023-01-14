@@ -20,8 +20,6 @@ function Form() {
     }   
 
     const submitHandler = async (e) => {
-        e.preventDefault()
-        
         await fetch(API + "todos", {
             method: "POST",
             body: JSON.stringify(form),
@@ -29,8 +27,6 @@ function Form() {
                 "Content-Type": "application/json"
             }
         })
-        
-        setForm({})
     }
 
     return (
