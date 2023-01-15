@@ -33,12 +33,26 @@ function List() {
     }, [])
 
     const deleteHandler = (id) => {
-
-        setItems((prevState) => prevState.filter(todo => todo.id != id))
+        setItems((prevState) => prevState.filter(todo => todo.id !== id))
 
         fetch(API + "/" + id, {
             method: 'DELETE'
         })
+    }
+
+    const updateHandler = (id) => {
+
+        const data = items.filter((item) => item.id === id)[0]
+        data.done = !data.done        
+    
+        fetch(API + "/" + id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+        })
+    
     }
 
     return (
@@ -50,7 +64,9 @@ function List() {
                     name = {item.todo}
                     duration = {item.time}
                     id = {item.id}
+                    done = {item.done}
                     deleteHandler = {deleteHandler}
+                    updateHandler = {updateHandler}
                 />
             ))}
         </ul>

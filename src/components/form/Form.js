@@ -20,9 +20,13 @@ function Form() {
     }   
 
     const submitHandler = async (e) => {
+
+        const data = form
+        data["done"] = false
+
         await fetch(API + "todos", {
             method: "POST",
-            body: JSON.stringify(form),
+            body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -30,7 +34,7 @@ function Form() {
     }
 
     return (
-        <form className='form' onSubmit={(e) => submitHandler(e)}>
+        <form className='form' action='POST' onSubmit={(e) => submitHandler(e)}>
             <Input
                 label="What are you going to do?"
                 name="todo"

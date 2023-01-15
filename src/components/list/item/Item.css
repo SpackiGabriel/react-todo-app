@@ -9,6 +9,10 @@
     align-items: center;
 }
 
+.true {
+    opacity: .4;
+}
+
 .item-title {
     color: #fff;
 }
