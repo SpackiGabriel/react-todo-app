@@ -40,19 +40,18 @@ function List() {
         })
     }
 
-    const updateHandler = (id) => {
+    const updateHandler = async (todo) => {
+        todo.done = !todo.done
 
-        const data = items.filter((item) => item.id === id)[0]
-        data.done = !data.done        
-    
-        fetch(API + "/" + id, {
+        const data = await fetch(API + "/todos/" + todo.id, {
             method: 'PUT',
+            body: JSON.stringify(todo),
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data),
+            }
         })
-    
+
+        setItems((prevState) => prevState.map((t) => (t.id === data.id ? (t = data) : (t = t))))
     }
 
     return (
@@ -61,10 +60,7 @@ function List() {
                 <p>There no tasks yet!</p>
             ) : items.map((item) => (
                 <Item 
-                    name = {item.todo}
-                    duration = {item.time}
-                    id = {item.id}
-                    done = {item.done}
+                    todo = {item}
                     deleteHandler = {deleteHandler}
                     updateHandler = {updateHandler}
                 />
