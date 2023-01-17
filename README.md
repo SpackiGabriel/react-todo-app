@@ -34,4 +34,4 @@ The current project is a ToDo list developed by me to study React.Js
   <li>Be happy!</li>
 </ol>
 
-![](https://github.com/SpackiGabriel/websocket-chat/blob/main/readme-image.JPG)
+![](https://github.com/SpackiGabriel/react-todo-app/blob/main/readme-image.JPG)
