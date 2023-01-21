@@ -27,7 +27,7 @@ The current project is a ToDo list developed by me to study React.Js
 ## How do I run it?
 <ol>
   <li>Go to the root folder of the project.</li>
-  <li>Open a terminal in the location.</li>
+  <li>Open a terminal.</li>
   <li>Type <i>npm start</i> and press enter.</li>
   <li>Open another terminal in the same location.</li>
   <li>Type <i>npm run server</i> and press enter.</li>
